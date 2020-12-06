@@ -3,16 +3,12 @@ package com.example.room
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.room.adapter.NotasAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
-
 
 class MainActivity : AppCompatActivity() {
     
@@ -22,8 +18,6 @@ class MainActivity : AppCompatActivity() {
     var notas:ArrayList<Nota>?=null
     var adapter:NotasAdapter?=null
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,9 +26,7 @@ class MainActivity : AppCompatActivity() {
         fadAdd = findViewById(R.id.fabAddNota)
         myRecyclerNotas = findViewById(R.id.myRecyclerNotas)
 
-
         notas = ArrayList<Nota>()
-
 
         lifecycleScope.launch {
             val notasdb = app!!.db.notaDAO().getAll()
@@ -49,11 +41,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-
         myRecyclerNotas!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         myRecyclerNotas!!.setHasFixedSize(true)
         myRecyclerNotas!!.adapter = adapter
-
 
     }
 
